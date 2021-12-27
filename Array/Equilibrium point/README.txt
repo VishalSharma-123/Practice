@@ -1,26 +1,23 @@
-Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one number) which has the maximum sum and return its sum.
-
+Given an array A of n positive numbers. The task is to find the first Equilibium Point in the array. 
+Equilibrium Point in an array is a position such that the sum of elements before it is equal to the sum of elements after it.
 
 Example 1:
 
-Input:
-N = 5
-Arr[] = {1,2,3,-2,5}
-Output:
-9
-Explanation:
-Max subarray sum is 9
-of elements (1, 2, 3, -2, 5) which 
-is a contiguous subarray.
+Input: 
+n = 5 
+A[] = {1,3,5,2,2} 
+Output: 3 
+Explanation: For second test case 
+equilibrium point is at position 3 
+as elements before it (1+3) = 
+elements after it (2+2). 
+
 
 Logic:
 
-1) it uses Kadane's Algorithm
-2) initialise two vairables, max_so_far = INT_MIN and max = 0
-3) in the max, add array elements as it is being traversed and compare it with max so max_so_far
-4) if max is greater than max_so_far, then assign max to integers.
-5) here INT_MIN is used. Please note the followign purpose.
-
-NOTE: INT_MAX is a macro that specifies that an integer variable cannot store any value beyond this limit. 
-INT_MIN specifies that an integer variable cannot store any value below this limit. 
-Values of INT_MAX and INT_MIN may vary from compiler to compiler
+1) find the sum of entire array
+2) subtract the first element from the sum
+3) start a  loop from position 1
+4) and sttart subtracting values from the original and sum and start adding values of arr[i-1] to different variable
+5) when both of them are equal print the index
+6) Time O(n) and space O(1)
