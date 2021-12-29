@@ -1,30 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(int arr[], int left, int mid, int right){
+void merge(int arr[], int const left, int const mid, int const right){
 
-    int sub_left = mid - left + 1, sub_right = right-mid;
+    auto const sub_left = mid - left + 1;
+    auto const sub_right = right - mid;
 
-    int arr_left[sub_left], arr_right[sub_right];
-    for (int i = 0; i<sub_left; i++){
-        arr_left[i] = arr[i];
+    auto *arr_left = new int[sub_left],
+         *arr_right = new int[sub_right];
+
+    for (auto i = 0; i<sub_left; i++){
+        arr_left[i] = arr[left + i];
     }
-    for (int j = 0; j<sub_right; j++){
+    for (auto j = 0; j<sub_right; j++){
         arr_right[j] = arr[mid + j+ 1];
     }
 
-    int left_index = 0, right_index = 0, k = left;
+    auto left_index = 0, right_index = 0;
+    int k = left;
+
     while (left_index < sub_left && right_index<sub_right){
-        if (arr_left[left_index] < arr_right[right_index]){
+        if (arr_left[left_index] <= arr_right[right_index]){
             arr[k] = arr_left[left_index];
             left_index++;
-            k++;
         }
         else{
-            arr[k] = arr_left[right_index];
+            arr[k] = arr_right[right_index];
             right_index++;
-            k++;
         }
+        k++;
     }
 
     while(left_index < sub_left){
@@ -40,19 +44,19 @@ void merge(int arr[], int left, int mid, int right){
     }
 }
 
-void mergeSort(int arr[], int begin, int end){
-    if (begin > end){
+void mergeSort(int arr[], int const begin, int const end){
+    if (begin >= end){
         return;
     }
 
-    int mid = begin + (end-begin)/2;
+    auto mid = begin + (end-begin)/2;
     mergeSort(arr, begin, mid);
     mergeSort(arr, mid+1, end);
     merge(arr, begin, mid, end);
 }
 
 void printArray(int arr[], int n){
-    for(int i = 0; i<n; i++){
+    for(auto i = 0; i<n; i++){
         cout << arr[i] << " ";
     }
     cout << endl;
