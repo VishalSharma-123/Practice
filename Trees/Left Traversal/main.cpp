@@ -48,3 +48,5 @@ int main() {
     leftView(root);
     return 0;
 }
+
+//left traversal
